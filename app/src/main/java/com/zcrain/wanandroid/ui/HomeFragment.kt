@@ -5,10 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.youth.banner.indicator.CircleIndicator
 import com.zcrain.wanandroid.R
+import com.zcrain.wanandroid.adapter.HomeBannerAdapter
 import com.zcrain.wanandroid.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -27,8 +30,17 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        mBinding.apply {
+            mBinding.viewModel = mViewModel
+            homeSrl.setOnRefreshListener {
+                mViewModel.getBannerData()
+            }
+            homeSrl.setOnLoadMoreListener {
+                it.finishLoadMore()
+            }
+        }
         return mBinding.root
     }
 
@@ -36,7 +48,13 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mViewModel.bannerData.observe(viewLifecycleOwner, {
-            Log.e("HomeFragment", "bannerData,size:${it.data?.size}")
+            mBinding.homeBanner.addBannerLifecycleObserver(this)
+                .setAdapter(HomeBannerAdapter(it))
+                .setIndicator(CircleIndicator(context))
+        })
+
+        mViewModel.failure.observe(viewLifecycleOwner, {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         })
 
         mViewModel.getBannerData()

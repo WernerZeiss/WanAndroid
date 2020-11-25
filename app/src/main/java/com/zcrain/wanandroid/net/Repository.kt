@@ -14,10 +14,14 @@ import javax.inject.Inject
  */
 class Repository @Inject constructor(private val apiService: APIService) {
 
-    suspend fun getBannerData(): Flow<BaseResponse<List<BannerBean>>> {
+    suspend fun getBannerData(): Flow<NetResult<List<BannerBean>>> {
         return flow {
             val bannerResult = apiService.getBanner()
-            emit(bannerResult)
+            if (bannerResult.errorCode == 0) {
+                emit(NetResult.Success(bannerResult.data!!))
+            } else {
+                emit(NetResult.Failure(NetError(bannerResult.errorCode, bannerResult.errorMsg)))
+            }
         }.flowOn(Dispatchers.IO)
     }
 }

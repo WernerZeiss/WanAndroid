@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.zcrain.wanandroid.ui.HomeViewModel" />
     </data>
 
 
@@ -28,7 +32,8 @@
         <com.scwang.smart.refresh.layout.SmartRefreshLayout
             android:id="@+id/home_srl"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:bindLoading="@{viewModel.MLoading}">
 
             <LinearLayout
                 android:layout_width="match_parent"
