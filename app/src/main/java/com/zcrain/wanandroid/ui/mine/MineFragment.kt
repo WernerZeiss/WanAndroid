@@ -1,4 +1,4 @@
-package com.zcrain.wanandroid.ui
+package com.zcrain.wanandroid.ui.mine
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,13 +15,14 @@ import com.zcrain.wanandroid.databinding.FragmentMineBinding
  */
 class MineFragment : Fragment() {
 
+    lateinit var mBinding: FragmentMineBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val mBinding: FragmentMineBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_mine, container, false)
+    ): View {
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_mine, container, false)
         return mBinding.root
     }
 

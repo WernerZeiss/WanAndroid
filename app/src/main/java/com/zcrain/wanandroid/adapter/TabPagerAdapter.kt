@@ -3,10 +3,10 @@ package com.zcrain.wanandroid.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.zcrain.wanandroid.ui.HomeFragment
-import com.zcrain.wanandroid.ui.MineFragment
-import com.zcrain.wanandroid.ui.QAFragment
-import com.zcrain.wanandroid.ui.TreeFragment
+import com.zcrain.wanandroid.ui.home.HomeFragment
+import com.zcrain.wanandroid.ui.mine.MineFragment
+import com.zcrain.wanandroid.ui.qa.QAFragment
+import com.zcrain.wanandroid.ui.tree.TreeFragment
 
 /**
  * @author CWQ

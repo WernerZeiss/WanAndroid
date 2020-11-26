@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WanAndroid</string>
+    <string name="newFlag">新</string>
+    <string name="empty"></string>
 </resources>

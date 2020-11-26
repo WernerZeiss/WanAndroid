@@ -1,13 +1,13 @@
-package com.zcrain.wanandroid.ui
+package com.zcrain.wanandroid.ui.qa
 
-import android.util.Log
 import androidx.databinding.ObservableBoolean
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewTreeLifecycleOwner
 import androidx.lifecycle.viewModelScope
-import com.zcrain.wanandroid.model.BannerBean
+import com.zcrain.wanandroid.Constant
+import com.zcrain.wanandroid.model.ArticleBean
+import com.zcrain.wanandroid.model.ListResponse
 import com.zcrain.wanandroid.net.Repository
 import com.zcrain.wanandroid.net.doFailure
 import com.zcrain.wanandroid.net.doSuccess
@@ -19,38 +19,41 @@ import kotlinx.coroutines.launch
 
 /**
  * @author CWQ
- * @date 11/24/20
+ * @date 11/26/20
  */
-class HomeViewModel @ViewModelInject constructor(private val repository: Repository) : ViewModel() {
+class QAViewModel @ViewModelInject constructor(private val repository: Repository) : ViewModel() {
 
-    companion object {
-        const val TAG = "HomeViewModel"
-    }
+    private var mPage = 0
 
-    val mLoading = ObservableBoolean()
+    val loading = ObservableBoolean()
 
     val failure = MutableLiveData<String>()
 
-    val bannerData = MutableLiveData<List<BannerBean>>()
+    val wenDaDatas = MutableLiveData<ListResponse<List<ArticleBean>>>()
 
-
-    fun getBannerData() = viewModelScope.launch {
-        repository.getBannerData()
+    /**
+     * 问答列表
+     * @param refreshType 刷新方式
+     */
+    fun getWenDaData(refreshType: Int) = viewModelScope.launch {
+        if (refreshType == Constant.REFRESH) {
+            mPage = 0
+        } else {
+            mPage++
+        }
+        repository.getWenDaList(mPage)
             .onStart {
-                Log.e(TAG,"onStart")
-                mLoading.set(true)
+                loading.set(true)
             }
             .catch {
-                mLoading.set(false)
+                loading.set(false)
             }
             .onCompletion {
-                Log.e(TAG,"onCompletion")
-                mLoading.set(false)
+                loading.set(false)
             }
             .collectLatest { netResult ->
-                Log.e(TAG,"collectLatest")
                 netResult.doSuccess {
-                    bannerData.postValue(it)
+                    wenDaDatas.postValue(it)
                 }
                 netResult.doFailure {
                     failure.postValue(it?.msg)

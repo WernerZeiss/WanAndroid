@@ -7,5 +7,7 @@ package com.zcrain.wanandroid.model
 data class BaseResponse<T>(
     var errorCode: Int,
     var errorMsg: String = "",
-    var data: T?
-)
+    var data: T,
+) {
+    fun isSuccess() = errorCode == 0
+}

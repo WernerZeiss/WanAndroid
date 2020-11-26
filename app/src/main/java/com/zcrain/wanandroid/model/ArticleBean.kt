@@ -1,5 +1,8 @@
 package com.zcrain.wanandroid.model
 
+import android.content.Context
+import com.zcrain.wanandroid.ui.WebActivity
+
 /**
  * @author CWQ
  * @date 11/24/20
@@ -11,12 +14,12 @@ data class ArticleBean(
     val canEdit: Boolean?,
     val chapterId: Int?,
     val chapterName: String?,
-    val collect: Boolean?,
+    val collect: Boolean,
     val courseId: Int?,
     val desc: String?,
     val descMd: String?,
     val envelopePic: String?,
-    val fresh: Boolean?,
+    val fresh: Boolean,
     val id: Int?,
     val link: String,
     val niceDate: String?,
@@ -31,11 +34,19 @@ data class ArticleBean(
     val shareUser: String?,
     val superChapterId: Int?,
     val superChapterName: String?,
-    val tags: List<Any>?,
+    val tags: List<TagBean>?,
     val title: String,
     val type: Int?,
     val userId: Int?,
     val visible: Int?,
     val zan: Int?
-)
+) {
+    fun clickItem(context: Context, url: String) {
+        WebActivity.start(context, url)
+    }
+}
 
+data class TagBean(
+    var name: String,
+    var url: String
+)

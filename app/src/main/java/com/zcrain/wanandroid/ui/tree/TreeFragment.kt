@@ -1,4 +1,4 @@
-package com.zcrain.wanandroid.ui
+package com.zcrain.wanandroid.ui.tree
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,21 +7,22 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.zcrain.wanandroid.R
-import com.zcrain.wanandroid.databinding.FragmentQaBinding
+import com.zcrain.wanandroid.databinding.FragmentTreeBinding
 
 /**
  * @author CWQ
  * @date 11/24/20
  */
-class QAFragment : Fragment() {
+class TreeFragment : Fragment() {
+
+    lateinit var mBinding: FragmentTreeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val mBinding: FragmentQaBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_qa, container, false)
+    ): View {
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_tree, container, false)
         return mBinding.root
     }
 
