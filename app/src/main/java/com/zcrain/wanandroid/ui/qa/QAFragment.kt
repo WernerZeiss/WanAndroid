@@ -1,6 +1,7 @@
 package com.zcrain.wanandroid.ui.qa
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +44,7 @@ class QAFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mViewModel.wenDaDatas.observe(viewLifecycleOwner, {
+            Log.e("QA","wenda data observer")
             if (mAdapter == null) {
                 mAdapter = ArticlesAdapter()
                 mBinding.rvWenda.adapter = mAdapter

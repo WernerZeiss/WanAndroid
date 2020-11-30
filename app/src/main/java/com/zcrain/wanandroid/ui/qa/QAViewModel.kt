@@ -1,6 +1,6 @@
 package com.zcrain.wanandroid.ui.qa
 
-import androidx.databinding.ObservableBoolean
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,7 +25,7 @@ class QAViewModel @ViewModelInject constructor(private val repository: Repositor
 
     private var mPage = 0
 
-    val loading = ObservableBoolean()
+    val loading = MutableLiveData<Boolean>()
 
     val failure = MutableLiveData<String>()
 
@@ -43,13 +43,17 @@ class QAViewModel @ViewModelInject constructor(private val repository: Repositor
         }
         repository.getWenDaList(mPage)
             .onStart {
-                loading.set(true)
+                Log.e("qamodel","onstart,before loading:"+loading.value)
+                loading.postValue(true)
+                Log.e("qamodel","onstart,after loading:"+loading.value)
             }
             .catch {
-                loading.set(false)
+                Log.e("qamodel","catch")
+                loading.postValue(false)
             }
             .onCompletion {
-                loading.set(false)
+                Log.e("qamodel","oncompletion")
+                loading.postValue(false)
             }
             .collectLatest { netResult ->
                 netResult.doSuccess {
