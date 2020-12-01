@@ -30,6 +30,8 @@ class QAFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_qa, container, false)
+        mBinding.viewModel = mViewModel
+        mBinding.lifecycleOwner = this
         mBinding.srlWenda.setOnRefreshListener {
             mViewModel.getWenDaData(Constant.REFRESH)
         }
@@ -44,7 +46,6 @@ class QAFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mViewModel.wenDaDatas.observe(viewLifecycleOwner, {
-            Log.e("QA","wenda data observer")
             if (mAdapter == null) {
                 mAdapter = ArticlesAdapter()
                 mBinding.rvWenda.adapter = mAdapter

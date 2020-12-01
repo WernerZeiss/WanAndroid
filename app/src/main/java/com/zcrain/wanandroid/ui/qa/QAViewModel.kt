@@ -1,6 +1,5 @@
 package com.zcrain.wanandroid.ui.qa
 
-import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -43,17 +42,13 @@ class QAViewModel @ViewModelInject constructor(private val repository: Repositor
         }
         repository.getWenDaList(mPage)
             .onStart {
-                Log.e("qamodel","onstart,before loading:"+loading.value)
-                loading.postValue(true)
-                Log.e("qamodel","onstart,after loading:"+loading.value)
+                loading.value = true
             }
             .catch {
-                Log.e("qamodel","catch")
-                loading.postValue(false)
+                loading.value = false
             }
             .onCompletion {
-                Log.e("qamodel","oncompletion")
-                loading.postValue(false)
+                loading.value = false
             }
             .collectLatest { netResult ->
                 netResult.doSuccess {

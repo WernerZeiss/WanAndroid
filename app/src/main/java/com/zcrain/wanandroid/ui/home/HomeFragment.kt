@@ -34,7 +34,8 @@ class HomeFragment : Fragment() {
     ): View {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         mBinding.apply {
-            mBinding.viewModel = mViewModel
+            this.viewModel = mViewModel
+            this.lifecycleOwner = this@HomeFragment
             homeSrl.setOnRefreshListener {
                 mViewModel.getBannerData()
                 mViewModel.getTopArticles()

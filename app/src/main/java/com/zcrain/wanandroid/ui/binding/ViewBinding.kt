@@ -12,7 +12,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
  */
 @BindingAdapter("bindLoading")
 fun bindLoading(smartRefreshLayout: SmartRefreshLayout, isLoading: Boolean) {
-    Log.e("bindloading","isLoading:$isLoading")
+    Log.d("bindloading","isLoading:$isLoading")
     if (!isLoading) {
         smartRefreshLayout.finishRefresh()
         smartRefreshLayout.finishLoadMore()

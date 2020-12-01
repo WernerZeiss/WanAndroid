@@ -2,4 +2,6 @@
     <string name="app_name">WanAndroid</string>
     <string name="newFlag">新</string>
     <string name="empty"></string>
+    <string name="refreshing">刷新中</string>
+    <string name="refreshFinish">刷新完毕</string>
 </resources>
