@@ -49,11 +49,14 @@
         <TextView
             android:id="@+id/tv_float"
             android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right|bottom"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="50dp"
             android:background="#004499"
             android:gravity="center"
             android:text="按钮"
-            app:layout_behavior=".behavior.FloatBtnBehavior"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            app:layout_behavior=".behavior.FloatBtnBehavior" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

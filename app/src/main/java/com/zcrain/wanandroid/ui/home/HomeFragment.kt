@@ -8,22 +8,25 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.youth.banner.indicator.CircleIndicator
 import com.zcrain.wanandroid.Constant
 import com.zcrain.wanandroid.R
 import com.zcrain.wanandroid.adapter.ArticlesAdapter
 import com.zcrain.wanandroid.adapter.HomeBannerAdapter
 import com.zcrain.wanandroid.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * @author CWQ
  * @date 11/24/20
  */
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     lateinit var mBinding: FragmentHomeBinding
 
-    private val mViewModel: HomeViewModel by activityViewModels()
+    private val mViewModel: HomeViewModel by viewModels()
 
     private var mAdapter: ArticlesAdapter? = null
 

@@ -28,7 +28,7 @@ class QAViewModel @ViewModelInject constructor(private val repository: Repositor
 
     val failure = MutableLiveData<String>()
 
-    val wenDaDatas = MutableLiveData<ListResponse<List<ArticleBean>>>()
+    val wenDaDatas = MutableLiveData<ListResponse<ArticleBean>>()
 
     /**
      * 问答列表

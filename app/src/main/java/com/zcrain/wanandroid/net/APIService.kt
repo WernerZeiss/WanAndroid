@@ -1,9 +1,6 @@
 package com.zcrain.wanandroid.net
 
-import com.zcrain.wanandroid.model.ArticleBean
-import com.zcrain.wanandroid.model.BannerBean
-import com.zcrain.wanandroid.model.BaseResponse
-import com.zcrain.wanandroid.model.ListResponse
+import com.zcrain.wanandroid.model.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -19,7 +16,7 @@ interface APIService {
      * @return BaseResponse<List<ArticleBean>>
      */
     @GET("article/list/{page}/json")
-    suspend fun getArticleList(@Path("page") page: Int): BaseResponse<ListResponse<List<ArticleBean>>>
+    suspend fun getArticleList(@Path("page") page: Int): BaseResponse<ListResponse<ArticleBean>>
 
     /**
      * banner
@@ -40,5 +37,19 @@ interface APIService {
      * @return BaseResponse<ListResponse<List<ArticleBean>>>
      */
     @GET("wenda/list/{page}/json")
-    suspend fun getWenList(@Path("page") page: Int): BaseResponse<ListResponse<List<ArticleBean>>>
+    suspend fun getWenList(@Path("page") page: Int): BaseResponse<ListResponse<ArticleBean>>
+
+    /**
+     * 体系列表
+     * @return BaseResponse<ListResponse<List<TreeBean>>>
+     */
+    @GET("tree/json")
+    suspend fun getTreeList():BaseResponse<List<TreeBean>>
+
+    /**
+     * 导航列表
+     * @return BaseResponse<List<NaviBean>>
+     */
+    @GET("navi/json")
+    suspend fun getNavigations():BaseResponse<List<NaviBean>>
 }

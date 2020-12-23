@@ -9,19 +9,22 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.zcrain.wanandroid.Constant
 import com.zcrain.wanandroid.R
 import com.zcrain.wanandroid.adapter.ArticlesAdapter
 import com.zcrain.wanandroid.databinding.FragmentQaBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * @author CWQ
  * @date 11/24/20
  */
+@AndroidEntryPoint
 class QAFragment : Fragment() {
 
     lateinit var mBinding: FragmentQaBinding
-    private val mViewModel: QAViewModel by activityViewModels()
+    private val mViewModel: QAViewModel by viewModels()
     private var mAdapter: ArticlesAdapter? = null
 
     override fun onCreateView(

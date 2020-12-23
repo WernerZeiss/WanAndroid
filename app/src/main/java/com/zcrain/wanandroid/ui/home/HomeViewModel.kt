@@ -38,7 +38,7 @@ class HomeViewModel @ViewModelInject constructor(private val repository: Reposit
     val bannerData = MutableLiveData<List<BannerBean>>()
 
     //首页文章列表
-    val articlesData = MutableLiveData<ListResponse<List<ArticleBean>>>()
+    val articlesData = MutableLiveData<ListResponse<ArticleBean>>()
 
     //置顶文章列表
     val topArticleData = MutableLiveData<List<ArticleBean>>()

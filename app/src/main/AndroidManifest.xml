@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.WebActivity" />
+        <activity android:name=".ui.tree.CategoryActivity" />
     </application>
 
 </manifest>

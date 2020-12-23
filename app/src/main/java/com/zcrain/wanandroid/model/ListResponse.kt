@@ -6,7 +6,7 @@ package com.zcrain.wanandroid.model
  */
 data class ListResponse<T>(
     var curPage: Int,
-    var datas: T?,
+    var datas: List<T>?,
     var offset: Int,
     var over: Boolean,
     var pageCount: Int,
