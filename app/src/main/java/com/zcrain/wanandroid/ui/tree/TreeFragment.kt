@@ -66,10 +66,6 @@ class TreeFragment : Fragment() {
                 positionOffsetPixels: Int
             ) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-                Log.e(
-                    "Tree",
-                    "position:$position,positionOffset:$positionOffset,positionOffsetPixels:$positionOffsetPixels"
-                )
                 if (currentState == 1 && lastPosition == 1 && position == 1 && positionOffsetPixels == 0) {
                     mMainModel.setCurrentMainIndex(3)
                 } else if (currentState == 1 && lastPosition == 0 && position == 0 && positionOffsetPixels == 0) {
