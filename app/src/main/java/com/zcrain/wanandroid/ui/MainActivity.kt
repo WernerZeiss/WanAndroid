@@ -1,9 +1,6 @@
 package com.zcrain.wanandroid.ui
 
-import android.app.ActivityManager
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -25,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initView()
-        printAllProcessName()
     }
 
     private fun initView() {
@@ -53,15 +49,6 @@ class MainActivity : AppCompatActivity() {
 
         mModel.currentMainIndex.observe(this) {
             mBinding.mainVp.currentItem = it
-        }
-    }
-
-
-    private fun printAllProcessName() {
-        val am = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val runningAppProcesses = am.runningAppProcesses
-        for (element in runningAppProcesses){
-            Log.e("Main","process name:${element.processName}")
         }
     }
 }

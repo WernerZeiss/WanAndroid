@@ -32,7 +32,7 @@ class NavAdapter(private var datas: List<NaviBean>) : RecyclerView.Adapter<NavVi
         holder.mBinding.tvName.text = datas[position].name
         val articles = datas[position].articles
         if (!articles.isNullOrEmpty()) {
-            for (i in 0..articles.size){
+            for (i in articles.indices){
                 val tv = creativeOrGetCacheTextView(holder.mBinding.fbl)
                 tv.setOnClickListener {
                     mOnClickItem?.invoke(datas[position],i)

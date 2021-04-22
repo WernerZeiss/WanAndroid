@@ -32,7 +32,7 @@ class TreeAdapter(private var datas: List<TreeBean>) : RecyclerView.Adapter<Tree
         holder.mBinding.tvName.text = datas[position].name
         val children = datas[position].children
         if (!children.isNullOrEmpty()) {
-            for (i in 0..children.size) {
+            for (i in children.indices) {
                 val tv = creativeOrGetCacheTextView(holder.mBinding.fbl)
                 tv.setOnClickListener {
                     mOnClickItem?.invoke(datas[position], i)

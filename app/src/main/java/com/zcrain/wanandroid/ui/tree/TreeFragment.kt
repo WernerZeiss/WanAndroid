@@ -79,7 +79,6 @@ class TreeFragment : Fragment() {
 
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                Log.e("Tree", "position:$position")
                 lastPosition = position
             }
         })

@@ -2,7 +2,6 @@ package com.zcrain.wanandroid.ui.home
 
 import android.util.Log
 import androidx.databinding.ObservableBoolean
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,17 +12,20 @@ import com.zcrain.wanandroid.model.ListResponse
 import com.zcrain.wanandroid.net.Repository
 import com.zcrain.wanandroid.net.doFailure
 import com.zcrain.wanandroid.net.doSuccess
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * @author CWQ
  * @date 11/24/20
  */
-class HomeViewModel @ViewModelInject constructor(private val repository: Repository) : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
     companion object {
         const val TAG = "HomeViewModel"
